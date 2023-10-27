@@ -10,12 +10,12 @@ typedef struct
     char name[255];
     int age;
     char rg[255];
-    Date entranceDate;
+    Date *entranceDate;
 } Register;
 
 typedef struct LDEElement
 {
-    Register data;
+    Register *data;
     struct LDEElement *next;
 } LDEElement;
 
@@ -27,7 +27,7 @@ typedef struct LDE
 
 typedef struct QueueElement
 {
-    Register data;
+    Register *data;
     struct QueueElement *next;
 } QueueElement;
 
@@ -45,7 +45,8 @@ typedef struct BSTElement
     struct BSTElement *rightChild;
 } BSTElement;
 
-typedef struct{
-    BSTElement root;
+typedef struct
+{
+    BSTElement *root;
     int len;
 } BST;
