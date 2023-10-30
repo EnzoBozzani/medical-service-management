@@ -18,6 +18,28 @@ void insertLDEElement(LDE *l, Register *data)
     l->len++;
 }
 
+LDEElement *searchByRG(LDE *list)
+{
+    char rg[255];
+    printf("Qual o RG do paciente? ");
+    scanf("%s", rg);
+    LDEElement *current = list->first;
+    sleep(1);
+    while (current != NULL)
+    {
+        if (strcmp(current->data->rg, rg) == 0)
+        {
+            break;
+        }
+        else
+        {
+            current = current->next;
+        }
+    }
+
+    return current;
+}
+
 void removeLDEElement(LDE *l, Register *data)
 {
     if (l->len == 1)
@@ -73,7 +95,10 @@ void registerPatient(LDE *list)
     Register *newPatient = malloc(sizeof(Register));
     printf("\nInforme os dados do paciente a ser cadastrado.\nNome: ");
     char temp;
-    scanf("%c", &temp);
+    if (list->len > 0)
+    {
+        scanf("%c", &temp);
+    }
     scanf("%[^\n]s", newPatient->name);
     printf("Idade: ");
     scanf("%c", &temp);
@@ -97,22 +122,10 @@ void registerPatient(LDE *list)
 
 void searchPatient(LDE *list)
 {
-    char rg[255];
-    printf("Qual o RG do paciente? ");
-    scanf("%s", rg);
-    LDEElement *current = list->first;
-    sleep(1);
-    while (current != NULL)
-    {
-        if (strcmp(current->data->rg, rg))
-        {
-            break;
-        }
-        current = current->next;
-    }
+    LDEElement *current = searchByRG(list);
     if (current == NULL)
     {
-        printf("\nNenhum registro encontrado");
+        printf("\nNenhum registro encontrado\n\n");
     }
     else
     {
@@ -123,19 +136,7 @@ void searchPatient(LDE *list)
 
 void updatePatientData(LDE *list)
 {
-    char rg[255];
-    printf("Qual o RG do paciente? ");
-    scanf("%s", rg);
-    LDEElement *current = list->first;
-    sleep(1);
-    while (current != NULL)
-    {
-        if (strcmp(current->data->rg, rg))
-        {
-            break;
-        }
-        current = current->next;
-    }
+    LDEElement *current = searchByRG(list);
     if (current == NULL)
     {
         printf("\nNenhum registro encontrado\n\n");
@@ -161,19 +162,7 @@ void updatePatientData(LDE *list)
 
 void deletePatient(LDE *list)
 {
-    char rg[255];
-    printf("Qual o RG do paciente? ");
-    scanf("%s", rg);
-    LDEElement *current = list->first;
-    sleep(1);
-    while (current != NULL)
-    {
-        if (strcmp(current->data->rg, rg))
-        {
-            break;
-        }
-        current = current->next;
-    }
+    LDEElement *current = searchByRG(list);
     if (current == NULL)
     {
         printf("\nNenhum registro encontrado\n\n");
@@ -181,7 +170,7 @@ void deletePatient(LDE *list)
     else
     {
         removeLDEElement(list, current->data);
-        printf("\nPaciente de RG %s foi deletado\n\n", rg);
+        printf("\nRegistro do paciente deletado\n\n");
     }
     sleep(2);
 }
