@@ -20,14 +20,6 @@ void menu(char *option)
 int main()
 {
     FILE *file;
-    if (access("patients.txt", F_OK) == 0)
-    {
-        file = fopen("patients.txt", "a");
-    }
-    else
-    {
-        file = fopen("patients.txt", "w");
-    }
     char option[255];
     LDE *registeredPatients = inicializeLDE();
     printf("Bem vindo ao aplicativo de gerenciamento de serviços de saúde!\n");
@@ -58,6 +50,10 @@ int main()
         {
             //...
         }
+        else if (strcmp(option, "4a") == 0)
+        {
+            fetchData(file, registeredPatients);
+        }
         else if (strcmp(option, "4b") == 0)
         {
             saveData(file, registeredPatients);
@@ -75,7 +71,6 @@ int main()
             sleep(1);
         }
     }
-    fclose(file);
     free(registeredPatients);
     return 0;
 }

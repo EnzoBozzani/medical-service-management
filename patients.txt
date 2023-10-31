@@ -1,10 +1,8 @@
-Nome: Lucca Boz
-Idade: 13
-RG: 09
-Data de entrada: 31/10/2023
-
-Nome: Enzo Bozzani
-Idade: 19
-RG: 123
-Data de entrada: 31/10/2023
-
+Lucca
+12
+3
+31/10/2023
+Enzo
+19
+1
+31/10/2023
