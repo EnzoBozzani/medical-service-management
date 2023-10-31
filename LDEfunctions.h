@@ -1,10 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <time.h>
-#include "structs.h"
-
 void insertLDEElement(LDE *l, Register *data)
 {
     LDEElement *new = malloc(sizeof(LDEElement));
@@ -48,7 +41,7 @@ void removeLDEElement(LDE *l, Register *data)
     }
     LDEElement *current = l->first;
     LDEElement *previous = NULL;
-    while (current != NULL && strcmp(current->data->rg, data->rg) == 0)
+    while (current != NULL && strcmp(current->data->rg, data->rg) != 0)
     {
         previous = current;
         current = current->next;
@@ -95,10 +88,7 @@ void registerPatient(LDE *list)
     Register *newPatient = malloc(sizeof(Register));
     printf("\nInforme os dados do paciente a ser cadastrado.\nNome: ");
     char temp;
-    if (list->len > 0)
-    {
-        scanf("%c", &temp);
-    }
+    scanf("%c", &temp);
     scanf("%[^\n]s", newPatient->name);
     printf("Idade: ");
     scanf("%c", &temp);
@@ -144,19 +134,19 @@ void updatePatientData(LDE *list)
     else
     {
         printf("\nDados atuais do paciente: \n\tNome: %s\n\tRG: %s\n\tIdade: %d\n\tEntrada: %d/%d/%d\n\n", current->data->name, current->data->rg, current->data->age, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
+        sleep(2);
+        printf("Informe os dados do paciente a ser atualizado.\nNome: ");
+        char temp;
+        scanf("%c", &temp);
+        scanf("%[^\n]s", current->data->name);
+        printf("Idade: ");
+        scanf("%c", &temp);
+        scanf("%d", &current->data->age);
+        printf("RG: ");
+        scanf("%c", &temp);
+        scanf("%[^\n]s", current->data->rg);
+        printf("\nUsuário atualizado com sucesso!\n\n");
     }
-    sleep(2);
-    printf("Informe os dados do paciente a ser atualizado.\nNome: ");
-    char temp;
-    scanf("%c", &temp);
-    scanf("%[^\n]s", current->data->name);
-    printf("Idade: ");
-    scanf("%c", &temp);
-    scanf("%d", &current->data->age);
-    printf("RG: ");
-    scanf("%c", &temp);
-    scanf("%[^\n]s", current->data->rg);
-    printf("\nUsuário atualizado com sucesso!\n");
     sleep(2);
 }
 
