@@ -5,6 +5,7 @@
 #include <time.h>
 #include "structs.h"
 #include "LDEfunctions.h"
+#include "QueueFunctions.h"
 #include "FileFunctions.h"
 
 void menu(char *option)
@@ -22,6 +23,7 @@ int main()
     FILE *file;
     char option[255];
     LDE *registeredPatients = inicializeLDE();
+    Queue *queue = createQueue();
     printf("Bem vindo ao aplicativo de gerenciamento de serviços de saúde!\n");
     while (strcmp(option, "6") != 0)
     {
@@ -47,6 +49,18 @@ int main()
             deletePatient(registeredPatients);
         }
         else if (strcmp(option, "2a") == 0)
+        {
+            enqueue(queue, registeredPatients);
+        }
+        else if (strcmp(option, "2b") == 0)
+        {
+            dequeue(queue);
+        }
+        else if (strcmp(option, "2c") == 0)
+        {
+            printQueue(queue);
+        }
+        else if (strcmp(option, "3a") == 0)
         {
             //...
         }

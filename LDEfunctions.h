@@ -74,7 +74,6 @@ void printLDERegisters(LDE *l)
     LDEElement *current = l->first;
     sleep(2);
     printf("\nPacientes Cadastrados: \n\n");
-    sleep(2);
     while (current != NULL)
     {
         printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %d/%d/%d\n\n", current->data->name, current->data->age, current->data->rg, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);

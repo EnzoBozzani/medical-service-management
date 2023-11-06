@@ -4,20 +4,27 @@ void fetchData(FILE *f, LDE *l)
     if (access("patients.txt", F_OK) == 0)
     {
         f = fopen("patients.txt", "r");
+        Register *p = malloc(sizeof(Register));
         int i = 0;
-
         while (!feof(f))
         {
-            Register *patient = malloc(sizeof(Register));
-            fread(patient->name, sizeof(patient->name), 1, f);
-            char s1[255];
-            fread(s1, sizeof(s1), 1, f);
-            sscanf(s1, "%d", &patient->age);
-            fread(patient->rg, sizeof(patient->rg), 1, f);
-            char s2[255];
-            fread(s2, sizeof(s2), 1, f);
-            sscanf(s2, "%d/%d/%d", &patient->entranceDate->day, &patient->entranceDate->month, &patient->entranceDate->year);
-            insertLDEElement(l, patient);
+            fgets(p->name, sizeof(p->name), f);
+            char age[255];
+            fgets(age, sizeof(age), f);
+            p->age = atoi(age);
+            fgets(p->rg, sizeof(p->rg), f);
+            char value[255];
+            fgets(value, sizeof(value), f);
+            p->entranceDate->day = atoi(value);
+            fgets(value, sizeof(value), f);
+            p->entranceDate->month = atoi(value);
+            fgets(value, sizeof(value), f);
+            p->entranceDate->year = atoi(value);
+            if (feof(f))
+            {
+                break;
+            }
+            insertLDEElement(l, p);
             i++;
         }
         printf("\nDados de %d pacientes carregados com sucesso\n\n", i);
@@ -50,7 +57,12 @@ void saveData(FILE *f, LDE *l)
         LDEElement *current = l->first;
         while (current != NULL)
         {
-            fprintf(f, "%s\n%d\n%s\n%d/%d/%d\n", current->data->name, current->data->age, current->data->rg, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
+            fprintf(f, "%s\n", current->data->name);
+            fprintf(f, "%d\n", current->data->age);
+            fprintf(f, "%s\n", current->data->rg);
+            fprintf(f, "%d\n", current->data->entranceDate->day);
+            fprintf(f, "%d\n", current->data->entranceDate->month);
+            fprintf(f, "%d\n", current->data->entranceDate->year);
             current = current->next;
         }
         printf("\nDados salvos no arquivo\n\n");
