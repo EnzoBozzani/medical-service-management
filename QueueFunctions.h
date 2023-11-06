@@ -1,6 +1,6 @@
 Queue *createQueue()
 {
-    Queue *queue = malloc(sizeof(queue));
+    Queue *queue = malloc(sizeof(Queue));
     queue->head = NULL;
     queue->tail = NULL;
     queue->len = 0;
@@ -76,7 +76,7 @@ void printQueue(Queue *queue)
         int i = 0;
         while (current != NULL)
         {
-            printf("%d\n\tNome: %s\n\tIdade: %d\n\tRG: %s\n\tData de entrada: %d/%d/%d\n\n", i, current->data->name, current->data->age, current->data->rg, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
+            printf("%d.\nNome: %s\nIdade: %d\nRG: %s\nData de entrada: %d/%d/%d\n\n", i, current->data->name, current->data->age, current->data->rg, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
             current = current->next;
             i++;
         }
