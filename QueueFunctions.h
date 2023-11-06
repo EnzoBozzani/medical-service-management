@@ -20,7 +20,7 @@ void enqueue(Queue *queue, LDE *list)
     LDEElement *patient = searchByRG(list);
     if (patient == NULL)
     {
-        printf("\nEsse paciente não está cadastrado\n\n");
+        printf("\nPaciente não cadastrado\n\n");
     }
     else
     {
@@ -29,18 +29,19 @@ void enqueue(Queue *queue, LDE *list)
         {
             queue->tail = newQueueElement;
             queue->head = newQueueElement;
-            queue->len++;
-        } else {
+        }
+        else
+        {
             queue->tail->next = newQueueElement;
             queue->tail = newQueueElement;
-            queue->len++;
         }
+        queue->len++;
         printf("\nPaciente enfileirado!\n\n");
     }
     sleep(2);
 }
 
-Register* dequeue(Queue *queue)
+Register *dequeue(Queue *queue)
 {
     QueueElement *address = queue->head;
     Register *data = queue->head->data;
@@ -48,7 +49,9 @@ Register* dequeue(Queue *queue)
     {
         queue->head = NULL;
         queue->tail = NULL;
-    } else {
+    }
+    else
+    {
         queue->head = queue->head->next;
     }
     free(address);
@@ -62,9 +65,12 @@ Register* dequeue(Queue *queue)
 void printQueue(Queue *queue)
 {
     sleep(2);
-    if (queue->len == 0){
+    if (queue->len == 0)
+    {
         printf("\nFila está vazia!\n\n");
-    } else {
+    }
+    else
+    {
         printf("\nFila: \n\n");
         QueueElement *current = queue->head;
         int i = 0;

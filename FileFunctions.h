@@ -4,30 +4,44 @@ void fetchData(FILE *f, LDE *l)
     if (access("patients.txt", F_OK) == 0)
     {
         f = fopen("patients.txt", "r");
-        Register *p = malloc(sizeof(Register));
+        Register *p;
+        Date *entranceDate;
         int i = 0;
-        while (!feof(f))
+        char buffer[255];
+        while (fgets(buffer, 255, f))
         {
-            fgets(p->name, sizeof(p->name), f);
-            char age[255];
-            fgets(age, sizeof(age), f);
-            p->age = atoi(age);
-            fgets(p->rg, sizeof(p->rg), f);
-            char value[255];
-            fgets(value, sizeof(value), f);
-            p->entranceDate->day = atoi(value);
-            fgets(value, sizeof(value), f);
-            p->entranceDate->month = atoi(value);
-            fgets(value, sizeof(value), f);
-            p->entranceDate->year = atoi(value);
-            if (feof(f))
+            buffer[strcspn(buffer, "\n")] = 0;
+            if (i % 6 == 0)
             {
-                break;
+                p = malloc(sizeof(Register));
+                entranceDate = malloc(sizeof(Date));
+                strcpy(p->name, buffer);
             }
-            insertLDEElement(l, p);
+            else if (i % 6 == 1)
+            {
+                p->age = atoi(buffer);
+            }
+            else if (i % 6 == 2)
+            {
+                strcpy(p->rg, buffer);
+            }
+            else if (i % 6 == 3)
+            {
+                entranceDate->day = atoi(buffer);
+            }
+            else if (i % 6 == 4)
+            {
+                entranceDate->month = atoi(buffer);
+            }
+            else if (i % 6 == 5)
+            {
+                entranceDate->year = atoi(buffer);
+                p->entranceDate = entranceDate;
+                insertLDEElement(l, p);
+            }
             i++;
         }
-        printf("\nDados de %d pacientes carregados com sucesso\n\n", i);
+        printf("\nDados de %d pacientes carregados com sucesso\n\n", i / 6);
         fclose(f);
     }
     else
