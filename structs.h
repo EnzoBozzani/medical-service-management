@@ -40,9 +40,10 @@ typedef struct Queue
 
 typedef struct BSTElement
 {
-    Register data;
-    struct BSTElement *leftChild;
-    struct BSTElement *rightChild;
+    Register *data;
+    struct BSTElement *parent;
+    struct BSTElement *left;
+    struct BSTElement *right;
 } BSTElement;
 
 typedef struct

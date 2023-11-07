@@ -6,6 +6,7 @@
 #include "structs.h"
 #include "LDEfunctions.h"
 #include "QueueFunctions.h"
+#include "BSTFunctions.h"
 #include "FileFunctions.h"
 
 void menu(char *option)
@@ -62,7 +63,19 @@ int main()
         }
         else if (strcmp(option, "3a") == 0)
         {
-            //...
+            showOrderedByParam(registeredPatients, "ano de registro");
+        }
+        else if (strcmp(option, "3b") == 0)
+        {
+            showOrderedByParam(registeredPatients, "mês de registro");
+        }
+        else if (strcmp(option, "3c") == 0)
+        {
+            showOrderedByParam(registeredPatients, "dia de registro");
+        }
+        else if (strcmp(option, "3d") == 0)
+        {
+            showOrderedByParam(registeredPatients, "idade");
         }
         else if (strcmp(option, "4a") == 0)
         {
