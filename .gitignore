@@ -1,4 +1,5 @@
 ./vscode
+.DS_Store
 notes.txt
 testes.c
 testes

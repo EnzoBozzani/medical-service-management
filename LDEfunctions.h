@@ -76,7 +76,7 @@ void printLDERegisters(LDE *l)
     printf("\nPacientes Cadastrados: \n\n");
     while (current != NULL)
     {
-        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %d/%d/%d\n\n", current->data->name, current->data->age, current->data->rg, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
+        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", current->data->name, current->data->age, current->data->rg, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
         current = current->next;
     }
     sleep(2);
@@ -118,7 +118,7 @@ void searchPatient(LDE *list)
     }
     else
     {
-        printf("\nDados do paciente: \n\tNome: %s\n\tRG: %s\n\tIdade: %d\n\tEntrada: %d/%d/%d\n\n", current->data->name, current->data->rg, current->data->age, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
+        printf("\nDados do paciente: \n\tNome: %s\n\tRG: %s\n\tIdade: %d\n\tEntrada: %02d/%02d/%04d\n\n", current->data->name, current->data->rg, current->data->age, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
     }
     sleep(2);
 }
@@ -132,7 +132,7 @@ void updatePatientData(LDE *list)
     }
     else
     {
-        printf("\nDados atuais do paciente: \n\tNome: %s\n\tRG: %s\n\tIdade: %d\n\tEntrada: %d/%d/%d\n\n", current->data->name, current->data->rg, current->data->age, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
+        printf("\nDados atuais do paciente: \n\tNome: %s\n\tRG: %s\n\tIdade: %d\n\tEntrada: %02d/%02d/%04d\n\n", current->data->name, current->data->rg, current->data->age, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
         sleep(2);
         printf("Informe os dados do paciente a ser atualizado.\nNome: ");
         char temp;

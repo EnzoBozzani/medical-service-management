@@ -99,5 +99,6 @@ int main()
         }
     }
     free(registeredPatients);
+    free(queue);
     return 0;
 }

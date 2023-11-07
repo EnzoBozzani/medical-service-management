@@ -73,10 +73,10 @@ void printQueue(Queue *queue)
     {
         printf("\nFila: \n\n");
         QueueElement *current = queue->head;
-        int i = 0;
+        int i = 1;
         while (current != NULL)
         {
-            printf("%d.\nNome: %s\nIdade: %d\nRG: %s\nData de entrada: %d/%d/%d\n\n", i, current->data->name, current->data->age, current->data->rg, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
+            printf("%d.\nNome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", i, current->data->name, current->data->age, current->data->rg, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
             current = current->next;
             i++;
         }
