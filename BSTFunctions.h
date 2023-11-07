@@ -3,7 +3,7 @@ void inOrderAge(BSTElement *root)
     if (root != NULL)
     {
         inOrderAge(root->left);
-        printf("%d ", root->data->age);
+        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", root->data->name, root->data->age, root->data->rg, root->data->entranceDate->day, root->data->entranceDate->month, root->data->entranceDate->year);
         inOrderAge(root->right);
     }
 }
@@ -13,7 +13,7 @@ void inOrderDay(BSTElement *root)
     if (root != NULL)
     {
         inOrderDay(root->left);
-        printf("%d ", root->data->entranceDate->day);
+        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", root->data->name, root->data->age, root->data->rg, root->data->entranceDate->day, root->data->entranceDate->month, root->data->entranceDate->year);
         inOrderDay(root->right);
     }
 }
@@ -23,7 +23,7 @@ void inOrderMonth(BSTElement *root)
     if (root != NULL)
     {
         inOrderMonth(root->left);
-        printf("%d ", root->data->entranceDate->month);
+        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", root->data->name, root->data->age, root->data->rg, root->data->entranceDate->day, root->data->entranceDate->month, root->data->entranceDate->year);
         inOrderMonth(root->right);
     }
 }
@@ -33,7 +33,7 @@ void inOrderYear(BSTElement *root)
     if (root != NULL)
     {
         inOrderYear(root->left);
-        printf("%d ", root->data->entranceDate->year);
+        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", root->data->name, root->data->age, root->data->rg, root->data->entranceDate->day, root->data->entranceDate->month, root->data->entranceDate->year);
         inOrderYear(root->right);
     }
 }
@@ -83,6 +83,117 @@ void insertBSTElementByAge(BST *tree, Register *data)
             }
         }
         if (data->age < previous->data->age)
+        {
+            previous->left = newBSTElement;
+        }
+        else
+        {
+            previous->right = newBSTElement;
+        }
+        newBSTElement->parent = previous;
+    }
+    tree->len++;
+}
+
+void insertBSTElementByDay(BST *tree, Register *data)
+{
+    BSTElement *newBSTElement = createBSTElement(tree, data);
+    if (tree->root == NULL)
+    {
+        tree->root = newBSTElement;
+    }
+    else
+    {
+        BSTElement *current = tree->root;
+        BSTElement *previous = NULL;
+        while (current != NULL)
+        {
+            if (data->entranceDate->day < current->data->entranceDate->day)
+            {
+                previous = current;
+                current = current->left;
+            }
+            else
+            {
+                previous = current;
+                current = current->right;
+            }
+        }
+        if (data->entranceDate->day < previous->data->entranceDate->day)
+        {
+            previous->left = newBSTElement;
+        }
+        else
+        {
+            previous->right = newBSTElement;
+        }
+        newBSTElement->parent = previous;
+    }
+    tree->len++;
+}
+
+void insertBSTElementByMonth(BST *tree, Register *data)
+{
+    BSTElement *newBSTElement = createBSTElement(tree, data);
+    if (tree->root == NULL)
+    {
+        tree->root = newBSTElement;
+    }
+    else
+    {
+        BSTElement *current = tree->root;
+        BSTElement *previous = NULL;
+        while (current != NULL)
+        {
+            if (data->entranceDate->month < current->data->entranceDate->month)
+            {
+                previous = current;
+                current = current->left;
+            }
+            else
+            {
+                previous = current;
+                current = current->right;
+            }
+        }
+        if (data->entranceDate->month < previous->data->entranceDate->month)
+        {
+            previous->left = newBSTElement;
+        }
+        else
+        {
+            previous->right = newBSTElement;
+        }
+        newBSTElement->parent = previous;
+    }
+    tree->len++;
+}
+
+void insertBSTElementByYear(BST *tree, Register *data)
+{
+    BSTElement *newBSTElement = createBSTElement(tree, data);
+    if (tree->root == NULL)
+    {
+        tree->root = newBSTElement;
+    }
+    else
+    {
+        BSTElement *current = tree->root;
+        BSTElement *previous = NULL;
+        while (current != NULL)
+        {
+            if (data->entranceDate->year < current->data->entranceDate->year)
+            {
+                previous = current;
+                current = current->left;
+            }
+            else
+            {
+                previous = current;
+                current = current->right;
+            }
+        }
+        if (data->entranceDate->year < previous->data->entranceDate->year)
         {
             previous->left = newBSTElement;
         }
@@ -216,15 +327,15 @@ void showOrderedByParam(LDE *list, char *param)
             }
             else if (strcmp(param, "dia de registro") == 0)
             {
-                // insertBSTElementByDay(tree, current->data);
+                insertBSTElementByDay(tree, current->data);
             }
             else if (strcmp(param, "mês de registro") == 0)
             {
-                // insertBSTElementByMonth(tree, current->data);
+                insertBSTElementByMonth(tree, current->data);
             }
             else if (strcmp(param, "ano de registro") == 0)
             {
-                // insertBSTElementByYear(tree, current->data);
+                insertBSTElementByYear(tree, current->data);
             }
             current = current->next;
         }
