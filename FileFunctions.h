@@ -48,7 +48,8 @@ void saveData(FILE *f, LDE *l)
     if (access("patients.txt", F_OK) == 0)
     {
         char yesOrNo[255];
-        printf("\nATENÇÃO!!! Salvar os dados sobrescreverá os registros existentes no arquivo!\nDigite qualquer coisa e pressione ENTER para salvar dados do programa + dados no arquivo e digite NÃO para sobrescrever sem salvar (apenas dados do programa): ");
+        printf("\nATENÇÃO!!! Salvar os dados sobrescreverá os registros existentes no arquivo!\nDigite qualquer coisa e pressione ENTER para salvar dados do programa + dados no arquivo e digite NÃO para sobrescrever sem salvar (apenas dados do programa)\n");
+        printf("OBS: Recomendamos que escolha a opção NÃO caso já tenha carregado os registros do arquivo para o programa nessa utilização, evitando que sejam salvos registros duplicados no arquivo!\nOpção: ");
         scanf("%s", yesOrNo);
         if (strcmp(yesOrNo, "NÃO") != 0)
         {

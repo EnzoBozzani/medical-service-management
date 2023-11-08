@@ -1,3 +1,4 @@
+// importação das bibliotecas que serão utilizadas
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,6 +10,8 @@
 #include "BSTFunctions.h"
 #include "FileFunctions.h"
 
+/// @brief função que imprime o menu
+/// @param option opção a ser lida
 void menu(char *option)
 {
     printf("Selecione a opção (OBS: 1, 2, 3 e 4 não são opções disponíveis, apenas 1a, 2b, etc ou 5 ou 6)\n1 - Cadastrar\n\t1a - Cadastrar novo paciente\n\t1b - Consultar paciente cadastrado\n\t1c - Mostrar lista completa\n\t1d - Atualizar dados de paciente\n\t1e - Remover paciente\n");
@@ -21,13 +24,16 @@ void menu(char *option)
 
 int main()
 {
+    // declara o arquivo, a string de opção, a lista e a fila
     FILE *file;
     char option[255];
     LDE *registeredPatients = inicializeLDE();
     Queue *queue = createQueue();
     printf("Bem vindo ao aplicativo de gerenciamento de serviços de saúde!\n");
+    // enquanto a opção for diferente de 6:
     while (strcmp(option, "6") != 0)
     {
+        // chama o menu e entra em uma das condições dependendo da opção
         menu(option);
         if (strcmp(option, "1a") == 0)
         {
@@ -85,6 +91,12 @@ int main()
         {
             saveData(file, registeredPatients);
         }
+        else if (strcmp(option, "5") == 0)
+        {
+            printf("\nEsse sistema foi desenvolvido por Enzo Bozzani, do 4º Semestre de Ciência da Computação, como projeto final da disciplina de Estrutura de Dados (CC4652).");
+            printf("\nO sistema começou a ser desenvolvido no dia 25/10/2023 e teve seu desenvolvimento finalizado no dia 08/11/2023.");
+            printf("\nÉ possível acessar a documentação, os commits e todo o código fonte no repositório do GitHub: https://github.com/EnzoBozzani/medical-service-management");
+        }
         else if (strcmp(option, "6") == 0)
         {
             sleep(1);
@@ -98,6 +110,7 @@ int main()
             sleep(1);
         }
     }
+    // libera a memória
     free(registeredPatients);
     free(queue);
     return 0;
