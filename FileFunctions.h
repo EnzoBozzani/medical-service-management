@@ -1,3 +1,9 @@
+// esse arquivo contém as funções referentes a seção 4 do menu, que está
+// relacionada aos arquivos
+
+/// @brief função que carrega dados do arquivo para a lista de registros
+/// @param f arquivo a ter os dados carregados
+/// @param l lista que receberá os dados
 void fetchData(FILE *f, LDE *l)
 {
     sleep(2);
@@ -43,6 +49,9 @@ void fetchData(FILE *f, LDE *l)
     sleep(2);
 }
 
+/// @brief função que salva dados da lista para o arquivo
+/// @param f arquivo que recebe os dados
+/// @param l lista com os dados
 void saveData(FILE *f, LDE *l)
 {
     if (access("patients.txt", F_OK) == 0)

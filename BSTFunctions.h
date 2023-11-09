@@ -1,3 +1,8 @@
+// esse arquivo contém as funções referentes a seção 3 do menu, que está
+// relacionada às árvores binárias de busca
+
+/// @brief função que imprime os registros na árvore em ordem de idade
+/// @param root nó a partir do qual é feita a impressão
 void inOrderAge(BSTElement *root)
 {
     if (root != NULL)
@@ -8,6 +13,8 @@ void inOrderAge(BSTElement *root)
     }
 }
 
+/// @brief função que imprime os registros na árvore em ordem de dia de registro
+/// @param root nó a partir do qual é feita a impressão
 void inOrderDay(BSTElement *root)
 {
     if (root != NULL)
@@ -18,6 +25,8 @@ void inOrderDay(BSTElement *root)
     }
 }
 
+/// @brief função que imprime os registros na árvore em ordem de mês de registro
+/// @param root nó a partir do qual é feita a impressão
 void inOrderMonth(BSTElement *root)
 {
     if (root != NULL)
@@ -28,6 +37,8 @@ void inOrderMonth(BSTElement *root)
     }
 }
 
+/// @brief função que imprime os registros na árvore em ordem de ano de registro
+/// @param root nó a partir do qual é feita a impressão
 void inOrderYear(BSTElement *root)
 {
     if (root != NULL)
@@ -38,6 +49,10 @@ void inOrderYear(BSTElement *root)
     }
 }
 
+/// @brief cria elemento da árvore binária de busca
+/// @param tree árvore que terá o elemento criado
+/// @param data dados do elemento
+/// @return elemento inicializado
 BSTElement *createBSTElement(BST *tree, Register *data)
 {
     BSTElement *newBSTElement = malloc(sizeof(BSTElement));
@@ -49,6 +64,8 @@ BSTElement *createBSTElement(BST *tree, Register *data)
     return newBSTElement;
 }
 
+/// @brief cria árvore binária de busca
+/// @return árvore inicializada
 BST *createBST()
 {
     BST *tree = malloc(sizeof(BST));
@@ -58,6 +75,9 @@ BST *createBST()
     return tree;
 }
 
+/// @brief insere o elemento na árvore de maneira ordenada quanto à idade do paciente
+/// @param tree árvore a ter o elemento inserido
+/// @param data dados do elemento a ser inserido
 void insertBSTElementByAge(BST *tree, Register *data)
 {
     BSTElement *newBSTElement = createBSTElement(tree, data);
@@ -95,6 +115,9 @@ void insertBSTElementByAge(BST *tree, Register *data)
     tree->len++;
 }
 
+/// @brief insere o elemento na árvore de maneira ordenada quanto ao dia de registro
+/// @param tree árvore a ter o elemento inserido
+/// @param data dados do elemento a ser inserido
 void insertBSTElementByDay(BST *tree, Register *data)
 {
     BSTElement *newBSTElement = createBSTElement(tree, data);
@@ -132,6 +155,9 @@ void insertBSTElementByDay(BST *tree, Register *data)
     tree->len++;
 }
 
+/// @brief insere o elemento na árvore de maneira ordenada quanto ao mês de registro
+/// @param tree árvore a ter o elemento inserido
+/// @param data dados do elemento a ser inserido
 void insertBSTElementByMonth(BST *tree, Register *data)
 {
     BSTElement *newBSTElement = createBSTElement(tree, data);
@@ -169,6 +195,9 @@ void insertBSTElementByMonth(BST *tree, Register *data)
     tree->len++;
 }
 
+/// @brief insere o elemento na árvore de maneira ordenada quanto ao ano de registro
+/// @param tree árvore a ter o elemento inserido
+/// @param data dados do elemento a ser inserido
 void insertBSTElementByYear(BST *tree, Register *data)
 {
     BSTElement *newBSTElement = createBSTElement(tree, data);
@@ -206,6 +235,9 @@ void insertBSTElementByYear(BST *tree, Register *data)
     tree->len++;
 }
 
+/// @brief exibe os registros de uma lista de maneira ordenada de acordo com o parâmetro passado
+/// @param list lista com os registros
+/// @param param parâmetro de ordenação (idade, dia ou mês ou ano de registro)
 void showOrderedByParam(LDE *list, char *param)
 {
     sleep(2);
@@ -256,5 +288,6 @@ void showOrderedByParam(LDE *list, char *param)
             inOrderYear(root);
         }
     }
+    free(tree);
     sleep(2);
 }

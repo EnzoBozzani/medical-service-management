@@ -1,6 +1,6 @@
 <h1>Medical Service Management System</h1>
 
-> Project Status: Development
+> Project Status: Finalized (November 9, 2023)
 
 ### Topics
 
