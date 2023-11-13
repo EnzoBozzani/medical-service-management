@@ -69,7 +69,7 @@ void enqueue(Queue *queue, LDE *list)
         queue->len++;
         printf("\nPaciente enfileirado!\n\n");
     }
-    sleep(2);
+    sleep(1);
 }
 
 /// @brief função que faz o desenfileiramento
@@ -104,9 +104,9 @@ Register *dequeue(Queue *queue)
     // libera o endereço e decrementa a quantidade
     free(address);
     queue->len--;
-    sleep(2);
+    sleep(1);
     printf("\nPaciente de RG %s desenfileirado com sucesso!\n\n", data->rg);
-    sleep(2);
+    sleep(1);
     return data;
 }
 
@@ -114,7 +114,7 @@ Register *dequeue(Queue *queue)
 /// @param queue fila que terá os elementos impressos
 void printQueue(Queue *queue)
 {
-    sleep(2);
+    sleep(1);
     // caso o tamanho da fila seja 0:
     if (queue->len == 0)
     {
@@ -135,5 +135,5 @@ void printQueue(Queue *queue)
             i++;
         }
     }
-    sleep(2);
+    sleep(1);
 }

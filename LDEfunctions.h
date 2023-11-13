@@ -122,7 +122,7 @@ void printLDERegisters(LDE *l)
 {
     // o elemento atual (que será usado para percorrer a lista) é definido como o primeiro da lista
     LDEElement *current = l->first;
-    sleep(2);
+    sleep(1);
     printf("\nPacientes Cadastrados: \n\n");
     // enquanto atual for diferente de NULL:
     while (current != NULL)
@@ -132,7 +132,7 @@ void printLDERegisters(LDE *l)
         // atual é definido como próximo do atual
         current = current->next;
     }
-    sleep(2);
+    sleep(1);
 }
 
 /// @brief função que faz o registro de um paciente, lendo os dados e inserindo o elemento na lista
@@ -163,7 +163,7 @@ void registerPatient(LDE *list)
     newPatient->entranceDate = entranceDate;
     // chama a função que insere o paciente na lista, passando como dado as informações lidas do usuário
     insertLDEElement(list, newPatient);
-    sleep(2);
+    sleep(1);
     printf("\nUsuário cadastrado com sucesso!\n\n");
     sleep(1);
 }
@@ -186,7 +186,7 @@ void searchPatient(LDE *list)
         // imprime as informações do paciente
         printf("\nDados do paciente: \n\tNome: %s\n\tRG: %s\n\tIdade: %d\n\tEntrada: %02d/%02d/%04d\n\n", current->data->name, current->data->rg, current->data->age, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
     }
-    sleep(2);
+    sleep(1);
 }
 
 /// @brief função que atualiza os dados de um paciente
@@ -206,7 +206,7 @@ void updatePatientData(LDE *list)
     {
         // imprime as informações do paciente
         printf("\nDados atuais do paciente: \n\tNome: %s\n\tRG: %s\n\tIdade: %d\n\tEntrada: %02d/%02d/%04d\n\n", current->data->name, current->data->rg, current->data->age, current->data->entranceDate->day, current->data->entranceDate->month, current->data->entranceDate->year);
-        sleep(2);
+        sleep(1);
         // pede os novos dados do paciente e os atualiza
         printf("Informe os dados do paciente a ser atualizado.\nNome: ");
         char temp;
@@ -220,7 +220,7 @@ void updatePatientData(LDE *list)
         scanf("%[^\n]s", current->data->rg);
         printf("\nUsuário atualizado com sucesso!\n\n");
     }
-    sleep(2);
+    sleep(1);
 }
 
 /// @brief função que realiza a remoção do registro de um paciente
@@ -242,5 +242,5 @@ void deletePatient(LDE *list)
         removeLDEElement(list, current->data);
         printf("\nRegistro do paciente deletado\n\n");
     }
-    sleep(2);
+    sleep(1);
 }

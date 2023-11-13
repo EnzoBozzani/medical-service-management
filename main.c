@@ -93,9 +93,11 @@ int main()
         }
         else if (strcmp(option, "5") == 0)
         {
+            sleep(1);
             printf("\nEsse sistema foi desenvolvido por Enzo Bozzani, do 4º Semestre de Ciência da Computação, como projeto final da disciplina de Estrutura de Dados (CC4652).");
             printf("\nO sistema começou a ser desenvolvido no dia 25/10/2023 e teve seu desenvolvimento finalizado no dia 09/11/2023.");
-            printf("\nÉ possível acessar a documentação, os commits e todo o código fonte no repositório do GitHub: https://github.com/EnzoBozzani/medical-service-management");
+            printf("\nÉ possível acessar a documentação, os commits e todo o código fonte no repositório do GitHub: https://github.com/EnzoBozzani/medical-service-management\n\n");
+            sleep(1);
         }
         else if (strcmp(option, "6") == 0)
         {

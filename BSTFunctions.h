@@ -3,49 +3,17 @@
 
 /// @brief função que imprime os registros na árvore em ordem de idade
 /// @param root nó a partir do qual é feita a impressão
-void inOrderAge(BSTElement *root)
+void inOrder(BSTElement *root)
 {
+    // se a raiz for diferente de NULL:
     if (root != NULL)
     {
-        inOrderAge(root->left);
+        // chama a função novamente, passando o filho esquerdo
+        inOrder(root->left);
+        // printa os dados
         printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", root->data->name, root->data->age, root->data->rg, root->data->entranceDate->day, root->data->entranceDate->month, root->data->entranceDate->year);
-        inOrderAge(root->right);
-    }
-}
-
-/// @brief função que imprime os registros na árvore em ordem de dia de registro
-/// @param root nó a partir do qual é feita a impressão
-void inOrderDay(BSTElement *root)
-{
-    if (root != NULL)
-    {
-        inOrderDay(root->left);
-        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", root->data->name, root->data->age, root->data->rg, root->data->entranceDate->day, root->data->entranceDate->month, root->data->entranceDate->year);
-        inOrderDay(root->right);
-    }
-}
-
-/// @brief função que imprime os registros na árvore em ordem de mês de registro
-/// @param root nó a partir do qual é feita a impressão
-void inOrderMonth(BSTElement *root)
-{
-    if (root != NULL)
-    {
-        inOrderMonth(root->left);
-        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", root->data->name, root->data->age, root->data->rg, root->data->entranceDate->day, root->data->entranceDate->month, root->data->entranceDate->year);
-        inOrderMonth(root->right);
-    }
-}
-
-/// @brief função que imprime os registros na árvore em ordem de ano de registro
-/// @param root nó a partir do qual é feita a impressão
-void inOrderYear(BSTElement *root)
-{
-    if (root != NULL)
-    {
-        inOrderYear(root->left);
-        printf("Nome: %s\nIdade: %d\nRG: %s\nData de entrada: %02d/%02d/%04d\n\n", root->data->name, root->data->age, root->data->rg, root->data->entranceDate->day, root->data->entranceDate->month, root->data->entranceDate->year);
-        inOrderYear(root->right);
+        // chama a função novamente, passando o filho direito
+        inOrder(root->right);
     }
 }
 
@@ -55,12 +23,15 @@ void inOrderYear(BSTElement *root)
 /// @return elemento inicializado
 BSTElement *createBSTElement(BST *tree, Register *data)
 {
+    // aloca espaço na memória
     BSTElement *newBSTElement = malloc(sizeof(BSTElement));
+    // seta os filhos e o pai como NULL
     newBSTElement->right = NULL;
     newBSTElement->left = NULL;
     newBSTElement->parent = NULL;
+    // seta os dados
     newBSTElement->data = data;
-
+    // retorna o elemento inicializado
     return newBSTElement;
 }
 
@@ -68,10 +39,13 @@ BSTElement *createBSTElement(BST *tree, Register *data)
 /// @return árvore inicializada
 BST *createBST()
 {
+    // aloca espaço na memória
     BST *tree = malloc(sizeof(BST));
+    // seta a raiz como NULL
     tree->root = NULL;
+    // o tamanho como 0
     tree->len = 0;
-
+    // retorna a árvore
     return tree;
 }
 
@@ -80,38 +54,57 @@ BST *createBST()
 /// @param data dados do elemento a ser inserido
 void insertBSTElementByAge(BST *tree, Register *data)
 {
+    // cria o elemento da árvore
     BSTElement *newBSTElement = createBSTElement(tree, data);
+    // se a raiz for NULL (árvore vazia):
     if (tree->root == NULL)
     {
+        // a raiz é o novo elemento
         tree->root = newBSTElement;
     }
+    // caso contrário:
     else
     {
+        // o elemento atual (que será usado para percorrer a árvore) é definido como a raiz
         BSTElement *current = tree->root;
+        // o anterior é setado como NULL
         BSTElement *previous = NULL;
+        // enquanto o atual for diferente de NULL:
         while (current != NULL)
         {
+            // se a idade do novo elemento for menor que a idade do atual:
             if (data->age < current->data->age)
             {
+                // anterior é definido como atual
                 previous = current;
+                // atual é definido como filho esquerdo do mesmo
                 current = current->left;
             }
+            // caso contrário:
             else
             {
+                // anterior é definido como atual
                 previous = current;
+                // atual é definido como filho direito do mesmo
                 current = current->right;
             }
         }
+        // se a idade do novo elemento for menor que a idade do anterior:
         if (data->age < previous->data->age)
         {
+            // filho esquerdo do anterior é definido como novo elemento
             previous->left = newBSTElement;
         }
+        // caso contrário:
         else
         {
+            // filho direito é definido como novo elemento
             previous->right = newBSTElement;
         }
+        // pai do novo elemento é definido como anterior
         newBSTElement->parent = previous;
     }
+    // quantidade é incrementada
     tree->len++;
 }
 
@@ -120,6 +113,7 @@ void insertBSTElementByAge(BST *tree, Register *data)
 /// @param data dados do elemento a ser inserido
 void insertBSTElementByDay(BST *tree, Register *data)
 {
+    // mesmo procedimento da outra função de inserção, porém o parâmetro de ordenação é o dia de entrada
     BSTElement *newBSTElement = createBSTElement(tree, data);
     if (tree->root == NULL)
     {
@@ -160,6 +154,7 @@ void insertBSTElementByDay(BST *tree, Register *data)
 /// @param data dados do elemento a ser inserido
 void insertBSTElementByMonth(BST *tree, Register *data)
 {
+    // mesmo procedimento da outra função de inserção, porém o parâmetro de ordenação é o mês de entrada
     BSTElement *newBSTElement = createBSTElement(tree, data);
     if (tree->root == NULL)
     {
@@ -200,6 +195,7 @@ void insertBSTElementByMonth(BST *tree, Register *data)
 /// @param data dados do elemento a ser inserido
 void insertBSTElementByYear(BST *tree, Register *data)
 {
+    // mesmo procedimento da outra função de inserção, porém o parâmetro de ordenação é o ano de entrada
     BSTElement *newBSTElement = createBSTElement(tree, data);
     if (tree->root == NULL)
     {
@@ -240,18 +236,25 @@ void insertBSTElementByYear(BST *tree, Register *data)
 /// @param param parâmetro de ordenação (idade, dia ou mês ou ano de registro)
 void showOrderedByParam(LDE *list, char *param)
 {
-    sleep(2);
+    sleep(1);
+    // cria a árvore
     BST *tree = createBST();
+    // define como atual o primeiro elemento da lista
     LDEElement *current = list->first;
+    // se atual for diferente de NULL (lista vazia):
     if (current == NULL)
     {
+        // é informado que nenhum paciente foi registrado
         printf("\nNenhum paciente registrado\n\n");
     }
+    // caso contrário:
     else
     {
         printf("\nPacientes ordenados por %s: \n\n", param);
+        // lista é percorrida:
         while (current != NULL)
         {
+            // chamando a função de inserção de acordo com o parâmetro passado
             if (strcmp(param, "idade") == 0)
             {
                 insertBSTElementByAge(tree, current->data);
@@ -270,24 +273,11 @@ void showOrderedByParam(LDE *list, char *param)
             }
             current = current->next;
         }
+        // com a árvore com todos elementos da lista
         BSTElement *root = tree->root;
-        if (strcmp(param, "idade") == 0)
-        {
-            inOrderAge(root);
-        }
-        else if (strcmp(param, "dia de registro") == 0)
-        {
-            inOrderDay(root);
-        }
-        else if (strcmp(param, "mês de registro") == 0)
-        {
-            inOrderMonth(root);
-        }
-        else if (strcmp(param, "ano de registro") == 0)
-        {
-            inOrderYear(root);
-        }
+        // é chamada a função que exibe os elementos da árvore em ordem
+        inOrder(root);
     }
     free(tree);
-    sleep(2);
+    sleep(1);
 }
