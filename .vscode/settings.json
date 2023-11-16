@@ -75,6 +75,7 @@
     "type_traits": "c",
     "vector": "c",
     "ldefunctions.h": "c",
-    "structs.h": "c"
+    "structs.h": "c",
+    "filefunctions.h": "c"
   }
 }

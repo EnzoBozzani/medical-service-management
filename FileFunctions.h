@@ -67,11 +67,11 @@ void saveData(FILE *f, LDE *l)
     {
         // é exibida uma opção ao usuário:
         char yesOrNo[255];
-        printf("\nATENÇÃO!!! Salvar os dados sobrescreverá os registros existentes no arquivo!\nDigite qualquer coisa e pressione ENTER para salvar dados do programa + dados no arquivo e digite NÃO para sobrescrever sem salvar (apenas dados do programa)\n");
-        printf("OBS: Recomendamos que escolha a opção NÃO caso já tenha carregado os registros do arquivo para o programa nessa utilização, evitando que sejam salvos registros duplicados no arquivo!\nOpção: ");
+        printf("\nATENÇÃO!!! Salvar os dados sobrescreverá os registros existentes no arquivo!\nDigite qualquer coisa e pressione ENTER para salvar dados do programa + dados no arquivo e digite NAO para sobrescrever sem salvar (apenas dados do programa)\n");
+        printf("OBS: Recomendamos que escolha a opção NAO caso já tenha carregado os registros do arquivo para o programa nessa utilização, evitando que sejam salvos registros duplicados no arquivo!\nOpção: ");
         scanf("%s", yesOrNo);
-        // se a opção for diferente de NÃO:
-        if (strcmp(yesOrNo, "NÃO") != 0)
+        // se a opção for diferente de NAO:
+        if (strcmp(yesOrNo, "NAO") != 0)
         {
             // carrega os dados do arquivo antes de salvar
             fetchData(f, l);
