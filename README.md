@@ -28,8 +28,10 @@
 
 ## Run application
 
-Terminal:
+Terminal (se o SO suportar executáveis Unix):
 
 ```
 ./main
 ```
+
+Se não suportar, é preciso recompilar o arquivo
